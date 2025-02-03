@@ -95,9 +95,9 @@ def job():
     print(f"Execução concluída - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
 # Agendar o script para rodar todos os dias às 5h
-schedule.every().day.at("05:00").do(job)
+schedule.every().day.at("16:00").do(job)
 
-print("⏳ Script agendado para rodar todos os dias às 05:00.")
+print("⏳ Script agendado para rodar todos os dias às 16:00.")
 
 # Loop infinito para manter o script rodando
 while True:
