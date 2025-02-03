@@ -1,7 +1,4 @@
 import requests
-import schedule
-import time
-from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -9,6 +6,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
+import time
 import pandas as pd
 
 # URL do Webhook do Discord (substitua pelo seu Webhook)
@@ -89,20 +87,5 @@ def coletar_versao_is():
     # Enviar as mensagens para o Discord respeitando o limite de 2000 caracteres
     enviar_mensagem_discord(mensagens_discord)
 
-def job():
-    print(f"Iniciando a coleta de versões - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    coletar_versao_is()
-    print(f"Execução concluída - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-
-# Agendar o script para rodar todos os dias às 5h
-schedule.every().day.at("16:00").do(job)
-
-print("⏳ Script agendado para rodar todos os dias às 16:00.")
-
-# Loop infinito para manter o script rodando
-while True:
-    schedule.run_pending()
-    time.sleep(60)  # Verifica a cada minuto
-
 if __name__ == "__main__":
-    job()
+    coletar_versao_is()
